@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>La Linea del Tempo — Gioco</title>
+<link rel="stylesheet" href="/public/style.css">
+</head>
+<body>
+
+<header>
+  <h1>🕰️ La Linea del Tempo</h1>
+  <p class="tag">Carte da gioco / intervista — GenerAction</p>
+</header>
+
+<main id="app">
+
+  <!-- SCREEN: HOME -->
+  <section id="screen-home" class="screen">
+    <div class="card-panel">
+      <h2>Entra nel cerchio</h2>
+      <label>Il tuo nome
+        <input id="name-input" maxlength="30" placeholder="Nome e cognome">
+      </label>
+      <div class="row">
+        <button id="btn-create" class="primary">Crea stanza (Animatore)</button>
+      </div>
+      <div class="divider">oppure</div>
+      <label>Codice stanza
+        <input id="code-input" maxlength="4" placeholder="Es. ABCD" style="text-transform:uppercase">
+      </label>
+      <button id="btn-join" class="primary">Unisciti</button>
+      <p id="home-error" class="error"></p>
+    </div>
+
+    <div class="rules-panel">
+      <h3>🔐 Regole di sicurezza</h3>
+      <ul>
+        <li>Ognuno condivide solo ciò che vuole</li>
+        <li>Tutto ciò che viene detto rimane nel cerchio</li>
+        <li>Nessuna storia è "troppo" o "sbagliata"</li>
+        <li>Ascoltare vale quanto parlare</li>
+      </ul>
+      <p class="small">4–8 giocatori ideale · 45–90 minuti · 3 min a carta</p>
+    </div>
+  </section>
+
+  <!-- SCREEN: GAME -->
+  <section id="screen-game" class="screen hidden">
+
+    <div class="topbar">
+      <div>
+        <strong>Stanza:</strong> <span id="room-code"></span>
+        <button id="btn-copy" class="link">Copia link</button>
+      </div>
+      <div><span id="phase-label"></span> · Mazzo: <span id="deck-left">0</span></div>
+    </div>
+
+    <div class="game-grid">
+
+      <aside class="players-panel">
+        <h3>Cerchio</h3>
+        <ul id="players-list"></ul>
+        <div id="host-controls" class="hidden">
+          <button id="btn-start" class="primary">Inizia partita</button>
+          <button id="btn-reset" class="secondary">Nuova partita</button>
+        </div>
+      </aside>
+
+      <div class="center-panel">
+        <div id="card-box" class="card-box empty">
+          <div class="empty-msg">In attesa…</div>
+        </div>
+
+        <div id="timer" class="timer hidden">⏱ <span id="timer-text">3:00</span></div>
+
+        <div id="action-bar" class="action-bar"></div>
+
+        <div class="reactions">
+          <h4>💬 Ascolto attivo — reazione breve</h4>
+          <div class="row">
+            <input id="reaction-input" maxlength="200" placeholder="una parola chiave · grazie · mi ha colpito… · una domanda aperta">
+            <button id="btn-reaction">Invia</button>
+          </div>
+          <div class="tips">
+            <span class="ok">✅ parola chiave · grazie · risonanza · domanda aperta</span>
+            <span class="ko">❌ consigli · interpretazioni · giudizi</span>
+          </div>
+        </div>
+      </div>
+
+      <aside class="log-panel">
+        <h3>Cronaca</h3>
+        <ul id="log-list"></ul>
+      </aside>
+    </div>
+  </section>
+</main>
+
+<script src="https://cdn.socket.io/4.7.5/socket.io.min.js"></script>
+<script src="/public/client.js"></script>
+</body>
+</html>
