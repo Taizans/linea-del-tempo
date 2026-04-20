@@ -109,11 +109,14 @@ function renderCard(s) {
   if (c.fase === "TERRENI COMUNI") box.classList.add("terreni");
   if (c.fase === "CARTA FINALE") box.classList.add("finale");
   box.innerHTML = `
-    <div class="card-number">#${c.id === 999 ? "FINAL" : c.id}</div>
-    <div class="card-fase">${escapeHtml(c.fase)}</div>
-    <div class="card-titolo">${escapeHtml(c.titolo)}</div>
-    <div class="card-domanda">${escapeHtml(c.domanda)}</div>
-    ${c.extra ? `<div class="card-extra">✨ ${escapeHtml(c.extra)}</div>` : ""}
+    ${c.img ? `<div class="card-image" style="background-image:url('${c.img}')"></div>` : ""}
+    <div class="card-content">
+      <div class="card-number">#${c.id === 999 ? "FINAL" : c.id}</div>
+      <div class="card-fase">${escapeHtml(c.fase)}</div>
+      <div class="card-titolo">${escapeHtml(c.titolo)}</div>
+      <div class="card-domanda">${escapeHtml(c.domanda)}</div>
+      ${c.extra ? `<div class="card-extra">${escapeHtml(c.extra)}</div>` : ""}
+    </div>
   `;
 }
 
@@ -146,7 +149,7 @@ function renderActions(s) {
     } else {
       const span = document.createElement("span");
       span.textContent = `In attesa degli altri (${s.final_done.length}/${s.players.length})`;
-      span.style.color = "#c8b9f0";
+      span.style.color = "#d4b896";
       bar.appendChild(span);
     }
   }
